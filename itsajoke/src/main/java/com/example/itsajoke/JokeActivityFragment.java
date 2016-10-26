@@ -1,5 +1,6 @@
 package com.example.itsajoke;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,10 +21,14 @@ public class JokeActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootview= inflater.inflate(R.layout.fragment_joke, container, false);
 
-
+        Intent intent = getActivity().getIntent();
+        String joke = intent.getStringExtra("Joke");
 
         TextView textView= (TextView) rootview.findViewById(R.id.joke);
 
+        if (joke != null && joke.length() != 0) {
+            textView.setText(joke);
+        }
 
 
         return rootview;
