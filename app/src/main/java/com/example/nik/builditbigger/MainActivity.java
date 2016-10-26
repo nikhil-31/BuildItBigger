@@ -11,12 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+import com.example.JokeClass;
 
+public class MainActivity extends ActionBarActivity {
+    String jokeProvider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        JokeClass joke = new JokeClass();
+        jokeProvider = joke.getJoke();
     }
 
 
@@ -42,8 +46,9 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,jokeProvider , Toast.LENGTH_SHORT).show();
     }
 
 
