@@ -6,6 +6,6 @@ public class JokeClass {
     }
 
     public String getJoke() {
-        return "Yo momma so fat that the moon thinks she found her cousin";
+        return "Corny";
     }
 }
