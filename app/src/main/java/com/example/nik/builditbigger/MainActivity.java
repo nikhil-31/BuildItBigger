@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.JokeClass;
@@ -27,11 +28,12 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
-
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar_loading);
 
     }
 
@@ -59,10 +61,53 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /* This method is called when tell joke button is clicked it launch an async task to retrive the data*/
-
-
     public void tellJoke(View view) {
         new EndpointAsyncTask().execute(this);
+    }
+
+    class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
+
+        private MyApi myApiService = null;
+        private Context context;
+
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+
+        }
+
+        @Override
+        protected String doInBackground(Context... params) {
+            if(myApiService == null) {  // Only do this once
+                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl("https://builditbigger-147719.appspot.com/_ah/api/");
+                myApiService = builder.build();
+            }
+
+            context = params[0];
+
+            try {
+                return myApiService.tellJoke().execute().getData();
+            } catch (IOException e) {
+                return e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+//        Toast.makeText(context,result+" woo",Toast.LENGTH_LONG).show();
+            progressBar.setProgress(100);
+            progressBar.setVisibility(View.GONE);
+            Intent intent = new Intent(context, JokeActivity.class);
+            intent.putExtra("Joke",result);
+            context.startActivity(intent);
+
+
+        }
     }
 
 
