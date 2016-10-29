@@ -20,7 +20,7 @@ public class JokeActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootview= inflater.inflate(R.layout.fragment_joke, container, false);
-
+        //Recieve the intent and display the joke in the textview
         Intent intent = getActivity().getIntent();
         String joke = intent.getStringExtra("Joke");
 

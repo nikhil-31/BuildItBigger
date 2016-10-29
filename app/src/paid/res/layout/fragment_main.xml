@@ -23,16 +23,4 @@
         android:text="@string/button_text"
         android:id="@+id/button_joke"/>
 
-    <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:max="100"
-        android:id="@+id/progressBar_loading"
-        android:layout_below="@id/button_joke"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:visibility="gone"/>
-
-
-
 </RelativeLayout>

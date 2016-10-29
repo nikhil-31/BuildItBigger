@@ -6,7 +6,7 @@ public class JokeClass {
 
     private String[] jokes;
     private Random random;
-
+    //Jokes that are provided
     public JokeClass() {
         jokes = new String[4];
         jokes[0] = "A SQL query goes into a bar, walks up to two tables and asks, \"Can I join you?\"";
@@ -16,7 +16,7 @@ public class JokeClass {
         random = new Random();
     }
 
-
+    //Method to get a random joke
     public String getJoke() {
         return jokes[random.nextInt(jokes.length)];
     }

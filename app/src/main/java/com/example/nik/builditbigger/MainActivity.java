@@ -28,12 +28,12 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
-    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar_loading);
+
 
     }
 
@@ -60,7 +60,9 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* This method is called when tell joke button is clicked it launch an async task to retrive the data*/
+    /* This method is called when tell joke button
+    is clicked it launch an async task to retrive
+    the data*/
     public void tellJoke(View view) {
         new EndpointAsyncTask().execute(this);
     }
