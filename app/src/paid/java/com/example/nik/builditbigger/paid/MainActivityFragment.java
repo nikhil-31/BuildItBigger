@@ -1,4 +1,4 @@
-package com.example.nik.builditbigger.paid;
+package com.example.nik.builditbigger;
 
 
 import android.os.Bundle;
